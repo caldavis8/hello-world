@@ -1,0 +1,37 @@
+---
+title: "Senior Project"
+author: "Calvin Davis"
+date: "10/24/2021"
+output: word_document
+---
+
+```{r}
+library(ggplot2)
+setwd("~/Senior Project")
+```
+
+```{r}
+aquaflux <- read.csv("AquaFluxData.csv", header = TRUE)
+
+```
+
+```{r}
+names(aquaflux)
+```
+
+
+```{r}
+ggplot(aquaflux) +
+       aes(aquaflux$Time_sec, aquaflux$Flux_g.m2h, color = aquaflux$Treatment) +
+       geom_point(size = 0.01) +
+       theme_classic() +
+       scale_color_manual(values = c("Control" = "snow4","Cooling" = "steelblue3",  "Heating"="orange")) +
+       labs(x= "Time (sec)" , y= "Flux (g/m^2hr)", color ="Treatment", se = FALSE) 
+
+       #geom_smooth( 
+           # aes(aquaflux$Time_sec, aquaflux$Flux_g.m2h, color = aquaflux$Treatment, method = "lm")) 
+      # scale_x_continuous(limits = c(0,16), breaks=seq(0,20, 2)) +
+       #scale_y_continuous(limits = c(0,7), breaks=seq(0,7, 1))
+      #alpha = number controls transparency
+```
+
